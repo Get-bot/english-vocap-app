@@ -1,0 +1,7 @@
+/gradlew text eol=lf
+*.bat text eol=crlf
+*.jar binary
+
+CLAUDE.md
+GUIDE.MD
+PRD.MD
