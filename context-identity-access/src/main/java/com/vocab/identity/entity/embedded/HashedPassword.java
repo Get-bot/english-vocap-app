@@ -1,7 +1,7 @@
 package com.vocab.identity.entity.embedded;
 
-import static com.vocab.identity.config.UserConst.MAX_PASSWORD_LENGTH;
-import static com.vocab.identity.config.UserConst.MIN_PASSWORD_LENGTH;
+import static com.vocab.identity.constant.UserConst.MAX_PASSWORD_LENGTH;
+import static com.vocab.identity.constant.UserConst.MIN_PASSWORD_LENGTH;
 
 import com.vocab.shared.exception.CustomException;
 import com.vocab.shared.exception.ErrorCode;

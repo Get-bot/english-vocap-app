@@ -1,4 +1,4 @@
-package com.vocab.identity.config;
+package com.vocab.identity.constant;
 
 public class UserConst {
 

@@ -1,6 +1,6 @@
 package com.vocab.identity.entity.embedded;
 
-import static com.vocab.identity.config.UserConst.MAX_EMAIL_LENGTH;
+import static com.vocab.identity.constant.UserConst.MAX_EMAIL_LENGTH;
 
 import com.vocab.shared.exception.CustomException;
 import com.vocab.shared.exception.ErrorCode;
