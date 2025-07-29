@@ -5,6 +5,33 @@ plugins {
     id 'java'
 }
 
+// 공통 버전 정의
+ext {
+    querydslVersion = '5.0.0'
+    jjwtVersion = '0.12.3'
+}
+
+// QueryDSL 설정 함수 - 필요한 모듈에서만 호출
+ext.configureQuerydsl = { Project project ->
+    def querydslDir = "src/main/generated"
+    
+    project.sourceSets {
+        main {
+            java {
+                srcDirs += [querydslDir]
+            }
+        }
+    }
+    
+    project.tasks.withType(JavaCompile).configureEach {
+        options.generatedSourceOutputDirectory = project.file(querydslDir)
+    }
+    
+    project.clean {
+        delete project.file(querydslDir)
+    }
+}
+
 // 모든 서브프로젝트에 적용할 공통 설정
 subprojects {
     apply plugin: 'java'
@@ -27,6 +54,7 @@ subprojects {
     
     repositories {
         mavenCentral()
+        gradlePluginPortal()
     }
     
     dependencyManagement {
@@ -45,5 +73,9 @@ subprojects {
     
     tasks.named('test') {
         useJUnitPlatform()
+        testLogging {
+            events 'passed', 'skipped', 'failed'
+            showStandardStreams = false
+        }
     }
 }
