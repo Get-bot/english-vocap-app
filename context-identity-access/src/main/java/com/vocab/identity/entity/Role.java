@@ -1,16 +1,20 @@
 package com.vocab.identity.entity;
 
-public enum Role {
-    USER("일반 사용자"),
-    ADMIN("관리자");
+import com.vocab.shared.entity.BaseEntity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-    private final String description;
+@Entity
+@Table(name = "roles")
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Role extends BaseEntity {
 
-    Role(String description) {
-        this.description = description;
-    }
+    @Column(nullable = false, unique = true)
+    private String name;
 
-    public String getDescription() {
-        return description;
-    }
 }

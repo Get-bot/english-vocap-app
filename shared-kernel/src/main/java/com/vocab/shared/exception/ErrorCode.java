@@ -15,6 +15,7 @@ public enum ErrorCode {
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 회원을 찾을 수 없습니다."),
     USER_DISABLED(HttpStatus.FORBIDDEN, "해당 회원은 비활성화 상태입니다."),
     USER_NAME_REQUIRED(HttpStatus.BAD_REQUEST, "사용자 이름은 필수 입력 항목입니다."),
+    USER_PRINCIPAL_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "사용자 정보가 올바르지 않습니다."),
 
     // Password
     PASSWORD_TOO_SHORT(HttpStatus.BAD_REQUEST, "비밀번호는 최소 6자리 이상이어야 합니다."),

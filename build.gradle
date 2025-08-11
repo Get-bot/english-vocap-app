@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
 // 루트 프로젝트 - 공통 설정 및 모듈 관리
 plugins {
     id 'org.springframework.boot' version '3.5.3' apply false
@@ -14,7 +16,7 @@ ext {
 // QueryDSL 설정 함수 - 필요한 모듈에서만 호출
 ext.configureQuerydsl = { Project project ->
     def querydslDir = "src/main/generated"
-    
+
     project.sourceSets {
         main {
             java {
@@ -22,11 +24,11 @@ ext.configureQuerydsl = { Project project ->
             }
         }
     }
-    
+
     project.tasks.withType(JavaCompile).configureEach {
         options.generatedSourceOutputDirectory = project.file(querydslDir)
     }
-    
+
     project.clean {
         delete project.file(querydslDir)
     }
@@ -36,33 +38,33 @@ ext.configureQuerydsl = { Project project ->
 subprojects {
     apply plugin: 'java'
     apply plugin: 'io.spring.dependency-management'
-    
+
     group = 'io.github.get-bot'
     version = '0.0.1-SNAPSHOT'
-    
+
     java {
         toolchain {
             languageVersion = JavaLanguageVersion.of(21)
         }
     }
-    
+
     configurations {
         compileOnly {
             extendsFrom annotationProcessor
         }
     }
-    
+
     repositories {
         mavenCentral()
         gradlePluginPortal()
     }
-    
+
     dependencyManagement {
         imports {
-            mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+            mavenBom SpringBootPlugin.BOM_COORDINATES
         }
     }
-    
+
     dependencies {
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.projectlombok:lombok'
@@ -70,7 +72,7 @@ subprojects {
         testImplementation 'org.junit.jupiter:junit-jupiter'
         testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     }
-    
+
     tasks.named('test') {
         useJUnitPlatform()
         testLogging {
